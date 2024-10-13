@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
         // 物理演算コンポーネントを取得
         myRigidbody = GetComponent<Rigidbody2D>();
-        
+
         // 前に進む速度を設定する処理
 
 
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     // 衝突判定、当たったもののタグで判断する
     // 当たったものの情報がotherに代入されてこの関数が実行される
     void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.name == "enemy") {
+        if (other.gameObject.tag == "enemy") {
             // 自分のHPを減らす処理
         }
     }
