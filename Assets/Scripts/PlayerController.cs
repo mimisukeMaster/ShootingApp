@@ -18,14 +18,17 @@ public class PlayerController : MonoBehaviour
     // ("public"はこのスクリプト外からこの変数にアクセスする必要がある時につける)
     // 外部からのアクセスが必要になったらつければいい
 
-    public float HP;
+    public int HP;
 
     Rigidbody2D myRigidbody;
 
     // Start関数は、ゲーム開始直後一回だけ実行される
     void Start()
     {
-        // HPの初期値を設定する処理
+        // HPの初期値（最大値）を設定する処理
+
+        // 体力ゲージの最大値を設定する関数を呼ぶ
+        GameManager.SetMaxHP(HP);
 
         // 物理演算コンポーネントを取得
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -38,7 +41,12 @@ public class PlayerController : MonoBehaviour
     // Update関数は毎フレームごとに実行される
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.LeftArrow)) {
+            LeftButtonDown();
+        }
+        if (Input.GetKey(KeyCode.RightArrow)) {
+            RightButtonDown();
+        }
     }
 
 
@@ -47,12 +55,15 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag == "enemy") {
             // 自分のHPを減らす処理
+
+            // UIを更新するためGameManagerController.csのDecreaseHP()関数を呼ぶ
+        
         }
     }
 
     // ここに左ボタン押したときの処理を書く
     public void LeftButtonDown() {
-
+        
     }
 
     // ここに右ボタン押したときの処理を書く
