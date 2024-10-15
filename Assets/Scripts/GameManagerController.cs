@@ -8,8 +8,11 @@ using UnityEngine.UI;
 public class GameManagerController : MonoBehaviour
 {
     //スコア表示用テキスト
-    public TextMeshPro ScoreUI;
+    public TextMeshProUGUI ScoreUI;
+
+    public Image HPGauge;
     
+    int maxHPGauge;
     int score;
 
     // Start関数は、ゲーム開始直後一回だけ実行される
@@ -17,6 +20,7 @@ public class GameManagerController : MonoBehaviour
     {
         // スコアの初期値を設定
         score = 0;
+        
     }
 
     // Update関数は毎フレームごとに実行される
@@ -25,11 +29,21 @@ public class GameManagerController : MonoBehaviour
         
     }
 
+    public void SetMaxHP(int maxHP) {
+
+        // プレイヤーの体力の最大値をHPゲージの最大値に設定
+        maxHPGauge = maxHP;
+    }
+
     public void DefeatEnemy() {
-        // 適尾を倒したときにスコアを加算する処理
+        // 敵をを倒したときにスコアを加算する処理
         
         //・・・・・・・・・・・・・
 
         ScoreUI.text = "Score: " + score;
+    }
+
+    public void DecreaseHP(int weight) {
+        HPGauge.fillAmount -= weight / maxHPGauge;
     }
 }

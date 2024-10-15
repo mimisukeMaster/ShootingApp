@@ -17,7 +17,7 @@ public class BulletController : MonoBehaviour
 
     float velocityY; // 発射速度
     float durationTime; // 弾の持続時間
-    float AP; // 弾の攻撃力
+    int AP; // 弾の攻撃力
 
     Rigidbody2D myRigidbody;
     //・・・・
