@@ -31,8 +31,7 @@ public class BulletController : MonoBehaviour
         // 物理演算コンポーネントを取得
         myRigidbody = GetComponent<Rigidbody2D>();
 
-        // 弾丸の速度を設定
-
+        myRigidbody.velocity = new Vector2(0, 10);
 
     }
 

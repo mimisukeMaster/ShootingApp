@@ -63,12 +63,12 @@ public class PlayerController : MonoBehaviour
 
     // ここに左ボタン押したときの処理を書く
     public void LeftButtonDown() {
-        
+        myRigidbody.velocity = new Vector2(-4, 0);
     }
 
     // ここに右ボタン押したときの処理を書く
     public void RightButtonDown() {
-
+        myRigidbody.velocity = new Vector2(4, 0);
     }
 
     // ここに弾丸発射ボタン押したときの処理を書く
@@ -76,6 +76,10 @@ public class PlayerController : MonoBehaviour
         // 弾丸を生成するには、Instantiate(***)関数を使う
         // 引数には、生成するもの、生成される座標、角度を指定する
 
-        // Instantiate(Bullet, 生成する位置, Quaternion.identity);
+        Vector3 pos = new Vector3(
+            this.transform.position.x, this.transform.position.y + 2, this.transform.position.y
+        );
+        Instantiate(Bullet, pos, Quaternion.Euler(0,0,90));
+        //identity角度指定なし
     }
 }
