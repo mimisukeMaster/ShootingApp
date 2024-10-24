@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 // プレイヤーの行動の制御を行うスクリプト
@@ -47,6 +48,17 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow)) {
             RightButtonDown();
         }
+
+        if(this.transform.position.x > 2) {
+            stopMoving();
+            Vector2 grobalPos = transform.TransformPoint(this.transform.position);
+            this.transform.position = new Vector2(grobalPos.x + this.transform.position.x-0.1f,0f);
+        }
+        if(this.transform.position.x < -2) {
+            stopMoving();
+            Vector2 grobalPos = transform.TransformPoint(this.transform.position);
+            this.transform.position = new Vector2(grobalPos.x + this.transform.position.x+0.1f,0f);
+        }
     }
 
 
@@ -81,5 +93,9 @@ public class PlayerController : MonoBehaviour
         );
         Instantiate(Bullet, pos, Quaternion.Euler(0,0,90));
         //identity角度指定なし
+    }
+
+    void stopMoving() {
+        myRigidbody.velocity = new Vector2(0, 0);
     }
 }

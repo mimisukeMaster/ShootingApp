@@ -45,10 +45,11 @@ public class BulletController : MonoBehaviour
     // 当たったものの情報がotherに代入されてこの関数が実行される
     void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag == "Enemy") {
-            // 敵のHPを減らす処理
             // 当たった相手のEnemtController.csを取得して、関数を呼ぶ
+            enemy.DecreaseHP();
 
             // 弾丸自身を削除
+            Destroy(this.gameObject);
         }
     }
 }
