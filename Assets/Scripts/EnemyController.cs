@@ -21,22 +21,28 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         // HPの初期値を設定する処理
+        HP = 10;
 
         // 物理演算コンポーネントを取得
         myRigidbody = GetComponent<Rigidbody2D>();
 
         // 移動速度を設定する処理
-
+        myRigidbody.velocity = new Vector2(-2, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(this.transform.position.x > 1.5) {
+            myRigidbody.velocity = new Vector2(-2, 0);
+        }
+        if(this.transform.position.x < -2.5) {
+            myRigidbody.velocity = new Vector2(2, 0);
+        }
     }
 
     public void DecreaseHP() {
         // 自分のHPを減らす処理
-
+        HP -= 1;
     }
 }
