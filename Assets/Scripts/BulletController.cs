@@ -54,9 +54,14 @@ public class BulletController : MonoBehaviour
             
             // 当たった相手のEnemyController.csを取得して、関数を呼ぶ
             other.GetComponent<EnemyController>().DecreaseHP();
-
-            // 弾丸自身を削除
-            Destroy(this.gameObject);
         }
+        if (other.gameObject.CompareTag("Boss")) {
+            
+            // 当たった相手のBossController.csを取得して、関数を呼ぶ
+            other.GetComponent<BossController>().DecreaseHP();
+        }
+        // 弾丸自身を削除
+        Destroy(this.gameObject);
+        
     }
 }

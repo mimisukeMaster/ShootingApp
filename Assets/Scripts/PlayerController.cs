@@ -56,10 +56,10 @@ public class PlayerController : MonoBehaviour
     // 衝突判定、当たったもののタグで判断する
     // 当たったものの情報がotherに代入されてこの関数が実行される
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Enemy")) {
+            Debug.Log(other.gameObject.tag);
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss")) {
             // 自分のHPを減らす処理
             HP -= 5;
-
             // UIを更新するためGameManagerController.csのDecreaseHP()関数を呼ぶ
             GameManager.DecreaseHP(HP);
 
