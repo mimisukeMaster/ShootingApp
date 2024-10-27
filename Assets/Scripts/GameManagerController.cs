@@ -12,6 +12,7 @@ public class GameManagerController : MonoBehaviour
 
     public Image HPGauge;
     public GameObject enemy;
+    public GameObject boss;
     float maxHPGauge;
     int score;
 
@@ -33,6 +34,9 @@ public class GameManagerController : MonoBehaviour
             Instantiate(enemy, new Vector2(randomX, 4 + 6 * i), Quaternion.Euler(0, 0, -90));
         }
 
+        // ボスを生成
+        // 生成する位置は、雑魚キャラを生成しきった先なので Vector2(0, 4 + 6 * enemyNum) の位置にする(最後の雑魚キャラのy座標のさらに奥)
+        Instantiate(boss, new Vector2(0, 4 + 6 * enemyNum), Quaternion.Euler(0, 0, 90));
     }
 
     // Update関数は毎フレームごとに実行される
