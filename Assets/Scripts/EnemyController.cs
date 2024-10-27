@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         // HPの初期値を設定する処理
-        HP = 10;
+        HP = 5;
 
         // 物理演算コンポーネントを取得
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -44,5 +44,10 @@ public class EnemyController : MonoBehaviour
     public void DecreaseHP() {
         // 自分のHPを減らす処理
         HP -= 1;
+
+        //HPが0になったら敵自信を削除
+        if(HP <= 0) {
+            Destroy(this.gameObject);
+        }
     }
 }
