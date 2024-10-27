@@ -12,7 +12,7 @@ public class GameManagerController : MonoBehaviour
 
     public Image HPGauge;
     
-    int maxHPGauge;
+    float maxHPGauge;
     int score;
 
     // Start関数は、ゲーム開始直後一回だけ実行される
@@ -43,7 +43,7 @@ public class GameManagerController : MonoBehaviour
         ScoreUI.text = "Score: " + score;
     }
 
-    public void DecreaseHP(int weight) {
-        HPGauge.fillAmount -= weight / maxHPGauge;
+    public void DecreaseHP(float weight) {
+        HPGauge.fillAmount = weight / maxHPGauge;
     }
 }

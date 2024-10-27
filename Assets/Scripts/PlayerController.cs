@@ -26,21 +26,23 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         // HPの初期値（最大値）を設定する処理
-
+        HP = 10;
         // 体力ゲージの最大値を設定する関数を呼ぶ
         GameManager.SetMaxHP(HP);
 
         // 物理演算コンポーネントを取得
         myRigidbody = GetComponent<Rigidbody2D>();
 
-        // 前に進む速度を設定する処理
-
-
     }
 
     // Update関数は毎フレームごとに実行される
     void Update()
     {
+        // 前に進む速度を設定する処理
+        if(myRigidbody.velocity.y < 2){
+            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x,2);
+        }
+
         if (Input.GetKey(KeyCode.LeftArrow)) {
             LeftButtonDown();
         }
@@ -61,12 +63,18 @@ public class PlayerController : MonoBehaviour
 
     // 衝突判定、当たったもののタグで判断する
     // 当たったものの情報がotherに代入されてこの関数が実行される
-    void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.tag == "enemy") {
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "Enemy") {
             // 自分のHPを減らす処理
+            HP -= 5;
 
             // UIを更新するためGameManagerController.csのDecreaseHP()関数を呼ぶ
-        
+            GameManager.DecreaseHP(HP);
+
+            // HPが0なら削除
+            if(HP <= 0) {
+                this.gameObject.SetActive(false);
+            }
         }
     }
 

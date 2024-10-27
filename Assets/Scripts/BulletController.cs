@@ -17,6 +17,8 @@ public class BulletController : MonoBehaviour
 
     float velocityY; // 発射速度
     float durationTime; // 弾の持続時間
+    float nowTime;
+
     int AP; // 弾の攻撃力
 
     Rigidbody2D myRigidbody;
@@ -26,7 +28,8 @@ public class BulletController : MonoBehaviour
     void Start()
     {
         // 弾丸の持続時間を設定
-
+        durationTime = 3;
+        nowTime = 0;
 
         // 物理演算コンポーネントを取得
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -38,12 +41,15 @@ public class BulletController : MonoBehaviour
     // Update関数は毎フレームごとに実行される
     void Update()
     {
-        
+        nowTime += Time.deltaTime;
+        if(nowTime > durationTime) {
+            Destroy(this.gameObject);
+        }
     }
     
     // 衝突判定、当たったもののタグで判断する
     // 当たったものの情報がotherに代入されてこの関数が実行される
-    void OnCollisionEnter2D(Collision2D other) {
+    void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Enemy") {
             // 当たった相手のEnemtController.csを取得して、関数を呼ぶ
             enemy.DecreaseHP();
