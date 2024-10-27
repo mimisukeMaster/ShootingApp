@@ -38,7 +38,6 @@ public class EnemyController : MonoBehaviour
         if(this.transform.position.x < -2.5) {
             myRigidbody.velocity = new Vector2(2, 0);
         }
-        Debug.Log(HP);
     }
 
     public void DecreaseHP() {

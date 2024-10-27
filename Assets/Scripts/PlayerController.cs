@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow)) LeftButtonDown();
         if (Input.GetKey(KeyCode.RightArrow)) RightButtonDown();
-        if (Input.GetKey(KeyCode.Return)) BulletButtonDown();
+        if (Input.GetKeyDown(KeyCode.Return)) BulletButtonDown();
 
         if(this.transform.position.x > 2 ) {
             myRigidbody.velocity = new Vector2(0, 0);
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
     // ここに弾丸発射ボタン押したときの処理を書く
     public void BulletButtonDown() {
-        
+
         // 弾丸を生成するには、Instantiate()関数を使う
         Vector3 pos = new Vector3(
             this.transform.position.x, this.transform.position.y + 2, this.transform.position.y
