@@ -50,9 +50,10 @@ public class BulletController : MonoBehaviour
     // 衝突判定、当たったもののタグで判断する
     // 当たったものの情報がotherに代入されてこの関数が実行される
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "Enemy") {
-            // 当たった相手のEnemtController.csを取得して、関数を呼ぶ
-            enemy.DecreaseHP();
+        if (other.gameObject.CompareTag("Enemy")) {
+            
+            // 当たった相手のEnemyController.csを取得して、関数を呼ぶ
+            other.GetComponent<EnemyController>().DecreaseHP();
 
             // 弾丸自身を削除
             Destroy(this.gameObject);

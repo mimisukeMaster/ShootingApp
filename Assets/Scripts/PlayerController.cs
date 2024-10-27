@@ -9,14 +9,9 @@ public class PlayerController : MonoBehaviour
     // GameObject型は、その変数(=Bullet)に代入されたものの全ての情報にアクセスできる
     public GameObject Bullet;
 
-    // 各スクリプト情報
     // ex) GameManagerController.csのある関数を呼び出したいときには
     //     GameManager.関数名() とする
     public GameManagerController GameManager;
-
-    // 以下のようにパラメータを作成していく
-    // ("public"はこのスクリプト外からこの変数にアクセスする必要がある時につける)
-    // 外部からのアクセスが必要になったらつければいい
 
     public int HP;
 
@@ -43,12 +38,9 @@ public class PlayerController : MonoBehaviour
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x,2);
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow)) {
-            LeftButtonDown();
-        }
-        if (Input.GetKey(KeyCode.RightArrow)) {
-            RightButtonDown();
-        }
+        if (Input.GetKey(KeyCode.LeftArrow)) LeftButtonDown();
+        if (Input.GetKey(KeyCode.RightArrow)) RightButtonDown();
+        if (Input.GetKeyDown(KeyCode.Return)) BulletButtonDown();
 
         if(this.transform.position.x > 2 ) {
             myRigidbody.velocity = new Vector2(0, 0);
@@ -64,7 +56,7 @@ public class PlayerController : MonoBehaviour
     // 衝突判定、当たったもののタグで判断する
     // 当たったものの情報がotherに代入されてこの関数が実行される
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "Enemy") {
+        if (other.gameObject.CompareTag("Enemy")) {
             // 自分のHPを減らす処理
             HP -= 5;
 
@@ -90,13 +82,11 @@ public class PlayerController : MonoBehaviour
 
     // ここに弾丸発射ボタン押したときの処理を書く
     public void BulletButtonDown() {
-        // 弾丸を生成するには、Instantiate(***)関数を使う
-        // 引数には、生成するもの、生成される座標、角度を指定する
 
+        // 弾丸を生成するには、Instantiate()関数を使う
         Vector3 pos = new Vector3(
             this.transform.position.x, this.transform.position.y + 2, this.transform.position.y
         );
-        Instantiate(Bullet, pos, Quaternion.Euler(0,0,90));
-        //identity角度指定なし
+        Instantiate(Bullet, pos, Quaternion.Euler(0, 0, 90));
     }
 }
