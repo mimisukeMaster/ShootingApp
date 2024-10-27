@@ -11,9 +11,11 @@ public class GameManagerController : MonoBehaviour
     public TextMeshProUGUI ScoreUI;
 
     public Image HPGauge;
-    
+    public GameObject enemy;
     float maxHPGauge;
     int score;
+
+    int enemyNum;
 
     // Start関数は、ゲーム開始直後一回だけ実行される
     void Start()
@@ -21,6 +23,16 @@ public class GameManagerController : MonoBehaviour
         // スコアの初期値を設定
         score = 0;
         
+        // 敵の生成
+        enemyNum = 10;
+
+        for (int i = 0; i < enemyNum; i++)
+        {
+            // x軸方向はランダムな位置に、方向は6とびずつ生成していく
+            float randomX = Random.Range(-2.5f, 1.5f);
+            Instantiate(enemy, new Vector2(randomX, 4 + 6 * i), Quaternion.Euler(0, 0, -90));
+        }
+
     }
 
     // Update関数は毎フレームごとに実行される

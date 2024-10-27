@@ -12,7 +12,6 @@ public class EnemyController : MonoBehaviour
     // 外部からのアクセスが必要になったらつければいい
 
     public float HP;
-    float velocityY;
 
     Rigidbody2D myRigidbody;
     /// ・・・・・
@@ -39,13 +38,15 @@ public class EnemyController : MonoBehaviour
         if(this.transform.position.x < -2.5) {
             myRigidbody.velocity = new Vector2(2, 0);
         }
+        Debug.Log(HP);
     }
 
     public void DecreaseHP() {
-        // 自分のHPを減らす処理
-        HP -= 1;
 
-        //HPが0になったら敵自信を削除
+        // 自分のHPを減らす処理
+        HP -= 1f;
+        
+        //HPが0になったら敵自身を削除
         if(HP <= 0) {
             Destroy(this.gameObject);
         }
