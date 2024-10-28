@@ -5,14 +5,17 @@ using UnityEngine;
 // ボスの制御
 public class BossController : MonoBehaviour
 {
-    public float HP;
+    public int HP;
+    GameManagerController gameManager;
 
 
     void Start()
     {
         // HPの初期値を設定する処理
         HP = 50;
-
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManagerController>();
+        
+        gameManager.SetMaxBossHP(HP);
     }
 
     // Update is called once per frame
@@ -24,7 +27,10 @@ public class BossController : MonoBehaviour
     public void DecreaseHP() {
 
         // 自分のHPを減らす処理
-        HP -= 1f;
+        HP -= 1;
+
+        // 体力ゲージを更新
+        gameManager.DecreaseBossHP(HP);
         
         //HPが0になったら敵自身を削除
         if(HP <= 0) {
