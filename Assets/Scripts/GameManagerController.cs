@@ -12,8 +12,15 @@ public class GameManagerController : MonoBehaviour
     public TextMeshProUGUI ScoreUI;
 
     public Image HPGauge;
-    public GameObject enemy;
+    public GameObject Enemy;
     public GameObject Boss;
+    public AudioSource AudioSource;
+    public AudioClip LaunchSE;
+    public AudioClip HitSE;
+    public AudioClip AttackSE;
+    public AudioClip ButtonSE;
+
+
     float maxHPGauge;
     Transform BossHPMask;
     float maxBossHPGauge;
@@ -35,7 +42,7 @@ public class GameManagerController : MonoBehaviour
         {
             // x軸方向はランダムな位置に、方向は6とびずつ生成していく
             float randomX = UnityEngine.Random.Range(-2.5f, 1.5f);
-            Instantiate(enemy, new Vector2(randomX, 4 + 6 * i), Quaternion.Euler(0, 0, -90));
+            Instantiate(Enemy, new Vector2(randomX, 4 + 6 * i), Quaternion.Euler(0, 0, -90));
         }
 
         // ボスを生成
@@ -79,4 +86,11 @@ public class GameManagerController : MonoBehaviour
         BossHPMask.position = new Vector3(
          (weight - 1) / maxBossHPGauge * 3.9f - 3.9f, BossHPMask.position.y, 0);
     }
+
+    // 各効果音を鳴らす処理
+    public void LaunchSEPlay() => AudioSource.PlayOneShot(LaunchSE);
+    public void AttackSEPlay() => AudioSource.PlayOneShot(AttackSE);
+    public void ButtonSEPlay() => AudioSource.PlayOneShot(ButtonSE);
+
+
 }
