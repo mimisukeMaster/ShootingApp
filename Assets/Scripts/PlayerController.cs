@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         // 前に進む速度を設定する処理
         if(myRigidbody.velocity.y < 2 && isStarted){
-            //bool関数は==が省略可、否定は!
+            // bool変数は==が省略可、否定は!
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x,2);
         }
 
@@ -64,7 +64,6 @@ public class PlayerController : MonoBehaviour
     // 衝突判定、当たったもののタグで判断する
     // 当たったものの情報がotherに代入されてこの関数が実行される
     void OnTriggerEnter2D(Collider2D other) {
-            Debug.Log(other.gameObject.tag);
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss")) {
             // 自分のHPを減らす処理
             HP -= 5;
