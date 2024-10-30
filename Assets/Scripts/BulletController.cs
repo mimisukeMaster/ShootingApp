@@ -11,6 +11,8 @@ public class BulletController : MonoBehaviour
     // 敵のゲームオブジェクト
     public EnemyController enemy;
 
+    public GameManagerController GameManager;
+
     // パラメータを以下のように作っていく
     // ("public"はこのスクリプト外からこの変数にアクセスする必要がある時につける)
     // 外部からのアクセスが必要になったらつければいい
@@ -60,6 +62,9 @@ public class BulletController : MonoBehaviour
             // 当たった相手のBossController.csを取得して、関数を呼ぶ
             other.GetComponent<BossController>().DecreaseHP();
         }
+        
+        GameManager.AttackSEPlay();
+
         // 弾丸自身を削除
         Destroy(this.gameObject);
         

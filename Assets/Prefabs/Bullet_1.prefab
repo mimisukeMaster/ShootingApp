@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 8527074568291843514, guid: 434831e0a8bea4a44a5b78ceff6f6d15, type: 3}
+  GameManager: {fileID: 3418674117802089052, guid: 06dcbcc883ecb0747a94ebb8daf8b3a2, type: 3}
 --- !u!50 &4590508199158739315
 Rigidbody2D:
   serializedVersion: 4

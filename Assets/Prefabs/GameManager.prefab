@@ -46,5 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScoreUI: {fileID: 0}
   HPGauge: {fileID: 0}
-  enemy: {fileID: 5315173573140648754, guid: 434831e0a8bea4a44a5b78ceff6f6d15, type: 3}
+  Enemy: {fileID: 5315173573140648754, guid: 434831e0a8bea4a44a5b78ceff6f6d15, type: 3}
   Boss: {fileID: 2656380794875229306, guid: 9a7708ca66a01134a8f29dcb4a4e1a7b, type: 3}
+  AudioSource: {fileID: 0}
+  LaunchSE: {fileID: 0}
+  HitSE: {fileID: 0}
+  AttackSE: {fileID: 0}
+  ButtonSE: {fileID: 0}
