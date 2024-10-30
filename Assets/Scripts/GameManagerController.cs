@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -15,21 +14,18 @@ public class GameManagerController : MonoBehaviour
     public Image HPGauge;
     public GameObject Enemy;
     public GameObject Boss;
-    public AudioSource AudioSource;
+    public AudioSource audioSource;
     public AudioClip LaunchSE;
     public AudioClip AttackSE;
     public AudioClip ButtonSE;
     public AudioClip ReplaySE;
     public GameObject StartUI;
     public GameObject ClearUI;
-    //本当はファイルで区切らずにタグと配列でやったほうが良き(画面比変えたとき大変)
+    // 本当はファイルで区切らずにタグと配列でやったほうが良き(画面比変えたとき大変)
 
     float maxHPGauge;
     Transform BossHPMask;
     float maxBossHPGauge;
-
-    int score;
-
     int enemyNum;
 
     GameObject[] GameUIs;
@@ -37,9 +33,6 @@ public class GameManagerController : MonoBehaviour
     // Start関数は、ゲーム開始直後一回だけ実行される
     void Start()
     {
-        // スコアの初期値を設定
-        score = 0;
-        
         // 敵の生成
         enemyNum = 10;
 
@@ -55,6 +48,7 @@ public class GameManagerController : MonoBehaviour
         GameObject boss = Instantiate(Boss, new Vector2(0, 7.2f + 6 * enemyNum), Quaternion.Euler(0, 0, 90));
 
         BossHPMask = boss.transform.Find("BossHPMask");
+        audioSource = GameObject.Find("Audio Source").GetComponent<AudioSource>();
     
         GameUIs = GameObject.FindGameObjectsWithTag("GameUI");
         foreach(GameObject obj in GameUIs) obj.SetActive(false);
@@ -76,14 +70,6 @@ public class GameManagerController : MonoBehaviour
         maxBossHPGauge = maxHP;
     }
 
-    public void DefeatEnemy() {
-        // 敵を倒したときにスコアを加算する処理
-        
-        //・・・・・・・・・・・・・
-
-        ScoreUI.text = "Score: " + score;
-    }
-
     public void DecreaseHP(float weight) {
         HPGauge.fillAmount = weight / maxHPGauge;
     }
@@ -96,13 +82,13 @@ public class GameManagerController : MonoBehaviour
     }
 
     // 各効果音を鳴らす処理
-    public void LaunchSEPlay() => AudioSource.PlayOneShot(LaunchSE);
-    //関数（引数）｛動作｝の動作が一行の時の書き方
-    public void AttackSEPlay() => AudioSource.PlayOneShot(AttackSE);
-    public void ButtonSEPlay() => AudioSource.PlayOneShot(ButtonSE);
-    public void ReplaySESEPlay() => AudioSource.PlayOneShot(ReplaySE);
+    // 関数（引数）｛動作｝のうち{動作}が一行の時の書き方
+    public void LaunchSEPlay() => audioSource.PlayOneShot(LaunchSE);
+    public void AttackSEPlay() => audioSource.PlayOneShot(AttackSE);
+    public void ButtonSEPlay() => audioSource.PlayOneShot(ButtonSE);
+    public void ReplaySEPlay() => audioSource.PlayOneShot(ReplaySE);
 
-    //UIの制御
+    // UIの制御
     public void StartProcess(){
         StartUI.SetActive(false);
         foreach(GameObject obj in GameUIs) obj.SetActive(true);
@@ -115,7 +101,7 @@ public class GameManagerController : MonoBehaviour
         ClearUI.SetActive(true);
     }
 
-    public void ReplayButtpmDowm() => SceneManager.LoadScene("GameScene");
-
+    public void ReplayButtonDown() => Invoke(nameof(LoadScene), 0.5f);
+    public void LoadScene() => SceneManager.LoadScene("GameScene");
     public void GameOver() => SceneManager.LoadScene("GameOverScene");
 }

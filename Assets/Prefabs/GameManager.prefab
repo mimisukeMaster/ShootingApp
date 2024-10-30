@@ -48,8 +48,10 @@ MonoBehaviour:
   HPGauge: {fileID: 0}
   Enemy: {fileID: 5315173573140648754, guid: 434831e0a8bea4a44a5b78ceff6f6d15, type: 3}
   Boss: {fileID: 2656380794875229306, guid: 9a7708ca66a01134a8f29dcb4a4e1a7b, type: 3}
-  AudioSource: {fileID: 0}
-  LaunchSE: {fileID: 0}
-  HitSE: {fileID: 0}
-  AttackSE: {fileID: 0}
-  ButtonSE: {fileID: 0}
+  audioSource: {fileID: 6814116582652063157, guid: 1d9f118a61b76014db1a93c619c4672b, type: 3}
+  LaunchSE: {fileID: 8300000, guid: 3b671d20c6e70d44bbdbd418e6ca36e2, type: 3}
+  AttackSE: {fileID: 8300000, guid: 1ffa9cbd3ecc3a64eb5359350b46e2b2, type: 3}
+  ButtonSE: {fileID: 8300000, guid: 4350663dd41a05a4aa3a15aa8bc96d3d, type: 3}
+  ReplaySE: {fileID: 8300000, guid: 4350663dd41a05a4aa3a15aa8bc96d3d, type: 3}
+  StartUI: {fileID: 0}
+  ClearUI: {fileID: 0}

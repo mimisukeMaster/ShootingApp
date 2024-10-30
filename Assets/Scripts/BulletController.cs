@@ -38,6 +38,7 @@ public class BulletController : MonoBehaviour
 
         myRigidbody.velocity = new Vector2(0, 10);
 
+        GameManager = GameObject.Find("GameManager").GetComponent<GameManagerController>();
     }
 
     // Update関数は毎フレームごとに実行される
