@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D myRigidbody;
 
+    //boolの初期値はfalse
+    public bool isStarted;
+
     // Start関数は、ゲーム開始直後一回だけ実行される
     void Start()
     {
@@ -34,12 +37,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // 前に進む速度を設定する処理
-        if(myRigidbody.velocity.y < 2){
+        if(myRigidbody.velocity.y < 2 && isStarted){
+            //bool関数は==が省略可、否定は!
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x,2);
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow)) LeftButtonDown();
-        if (Input.GetKey(KeyCode.RightArrow)) RightButtonDown();
+        //Ctrl + Alt + Shift 任意の矢印で複数行選択
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) LeftButtonDown();
+        if (Input.GetKeyDown(KeyCode.RightArrow)) RightButtonDown();
         if (Input.GetKeyDown(KeyCode.Return)) BulletButtonDown();
 
         if(this.transform.position.x > 2 ) {
@@ -49,6 +54,9 @@ public class PlayerController : MonoBehaviour
         if(this.transform.position.x < -2 ) {
             myRigidbody.velocity = new Vector2(0, 0);
             this.transform.position += new Vector3(0.1f, 0f, 0f);
+        }
+        if(this.transform.position.y > 62) {
+            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, 0);
         }
     }
 
@@ -65,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
             // HPが0なら削除
             if(HP <= 0) {
-                this.gameObject.SetActive(false);
+                GameManager.GameOver();
             }
         }
     }
@@ -73,20 +81,26 @@ public class PlayerController : MonoBehaviour
     // ここに左ボタン押したときの処理を書く
     public void LeftButtonDown() {
         myRigidbody.velocity = new Vector2(-4, 0);
+        GameManager.ButtonSEPlay();
     }
 
     // ここに右ボタン押したときの処理を書く
     public void RightButtonDown() {
         myRigidbody.velocity = new Vector2(4, 0);
+        GameManager.ButtonSEPlay();
     }
 
     // ここに弾丸発射ボタン押したときの処理を書く
     public void BulletButtonDown() {
-
+        
         // 弾丸を生成するには、Instantiate()関数を使う
         Vector3 pos = new Vector3(
             this.transform.position.x, this.transform.position.y + 2, this.transform.position.y
         );
         Instantiate(Bullet, pos, Quaternion.Euler(0, 0, 90));
+
+        GameManager.LaunchSEPlay();
     }
+
+    public void Started() => isStarted = true;
 }

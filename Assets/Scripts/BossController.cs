@@ -35,6 +35,8 @@ public class BossController : MonoBehaviour
         //HPが0になったら敵自身を削除
         if(HP <= 0) {
             Destroy(this.gameObject);
+
+            gameManager.ClearProcess();
         }
     }
 }
