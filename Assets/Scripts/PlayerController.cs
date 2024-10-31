@@ -74,6 +74,9 @@ public class PlayerController : MonoBehaviour
             // 点滅させる            
             StartCoroutine(nameof(FlushPlayer));
 
+            // ダメージ受けた効果音
+            GameManager.AttackSEPlay();
+
             // HPが0なら削除
             if(HP <= 0) GameManager.GameOver();
         }
