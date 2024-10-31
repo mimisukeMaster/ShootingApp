@@ -31,12 +31,25 @@ public class BossController : MonoBehaviour
 
         // 体力ゲージを更新
         gameManager.DecreaseBossHP(HP);
+
+        // 点滅させる
+        StartCoroutine(nameof(FlushBoss));
         
         //HPが0になったら敵自身を削除
         if(HP <= 0) {
             Destroy(this.gameObject);
 
             gameManager.ClearProcess();
+        }
+    }
+
+    IEnumerator FlushBoss() {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        for (int i = 0; i < 5; i++){ 
+            sprite.enabled = false;
+            yield return new WaitForSeconds(0.05f);
+            sprite.enabled = true;
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }

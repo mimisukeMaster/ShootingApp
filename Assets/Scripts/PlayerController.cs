@@ -70,10 +70,23 @@ public class PlayerController : MonoBehaviour
             // UIを更新するためGameManagerController.csのDecreaseHP()関数を呼ぶ
             GameManager.DecreaseHP(HP);
 
+            // 点滅させる            
+            StartCoroutine(nameof(FlushPlay));
+
             // HPが0なら削除
             if(HP <= 0) {
                 GameManager.GameOver();
             }
+        }
+    }
+
+    IEnumerator FlushPlay() {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        for (int i = 0; i < 5; i++){ 
+            sprite.enabled = false;
+            yield return new WaitForSeconds(0.05f);
+            sprite.enabled = true;
+            yield return new WaitForSeconds(0.05f);
         }
     }
 

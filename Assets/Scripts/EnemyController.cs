@@ -44,10 +44,23 @@ public class EnemyController : MonoBehaviour
 
         // 自分のHPを減らす処理
         HP -= 1f;
+
+        // 点滅させる
+        StartCoroutine(nameof(FlushEnemy));
         
         //HPが0になったら敵自身を削除
         if(HP <= 0) {
             Destroy(this.gameObject);
+        }
+    }
+
+    IEnumerator FlushEnemy() {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        for (int i = 0; i < 5; i++){ 
+            sprite.enabled = false;
+            yield return new WaitForSeconds(0.05f);
+            sprite.enabled = true;
+            yield return new WaitForSeconds(0.05f);
         }
     }
 }
