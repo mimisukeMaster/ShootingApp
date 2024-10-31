@@ -15,6 +15,9 @@ public class GameManagerController : MonoBehaviour
     public GameObject Enemy;
     public GameObject Boss;
     public AudioSource audioSource;
+    public AudioClip StartBGM;
+    public AudioClip GameBGM;
+    public AudioClip ClearBGM;
     public AudioClip LaunchSE;
     public AudioClip AttackSE;
     public AudioClip ButtonSE;
@@ -52,28 +55,22 @@ public class GameManagerController : MonoBehaviour
     
         GameUIs = GameObject.FindGameObjectsWithTag("GameUI");
         foreach(GameObject obj in GameUIs) obj.SetActive(false);
+
+        // スタート画面用でのBGMの再生
+        audioSource.clip = StartBGM;
+        audioSource.Play();
     }
 
     // Update関数は毎フレームごとに実行される
-    void Update()
-    {
+    void Update() {
         
     }
 
-    public void SetMaxHP(int maxHP) {
+    // プレイヤーの体力の最大値をHPゲージの最大値に設定
+    public void SetMaxHP(int maxHP) => maxHPGauge = maxHP;
+    public void SetMaxBossHP(int maxHP) => maxBossHPGauge = maxHP;
 
-        // プレイヤーの体力の最大値をHPゲージの最大値に設定
-        maxHPGauge = maxHP;
-    }
-
-    public void SetMaxBossHP(int maxHP) {
-        maxBossHPGauge = maxHP;
-    }
-
-    public void DecreaseHP(float weight) {
-        HPGauge.fillAmount = weight / maxHPGauge;
-    }
-
+    public void DecreaseHP(float weight) => HPGauge.fillAmount = weight / maxHPGauge;
     public void DecreaseBossHP(float weight) {
         Debug.Log(weight / maxBossHPGauge * 5);
         
@@ -92,13 +89,18 @@ public class GameManagerController : MonoBehaviour
     public void StartProcess(){
         StartUI.SetActive(false);
         foreach(GameObject obj in GameUIs) obj.SetActive(true);
+
+        // ゲームBGMに変更する
+        // audioSourceクラスのclip変数を変える
         
     }
     public void ClearProcess() {
-
         foreach(GameObject obj in GameUIs) obj.SetActive(false);
-        
         ClearUI.SetActive(true);
+
+        // BGMをクリア後のBGMに変更する処理
+        // AudioSourceクラスのclipを変更する
+
     }
 
     public void ReplayButtonDown() => Invoke(nameof(LoadScene), 0.5f);

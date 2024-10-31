@@ -2810,6 +2810,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: e44569113a8cacb41861d45e31dbf2c2, type: 3}
     - target: {fileID: 3418674117802089052, guid: 06dcbcc883ecb0747a94ebb8daf8b3a2, type: 3}
+      propertyPath: StartBGM
+      value: 
+      objectReference: {fileID: 8300000, guid: b966650a8e1c96c45974c8da5460dee4, type: 3}
+    - target: {fileID: 3418674117802089052, guid: 06dcbcc883ecb0747a94ebb8daf8b3a2, type: 3}
       propertyPath: AudioSource
       value: 
       objectReference: {fileID: 0}

@@ -49,9 +49,7 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(nameof(FlushEnemy));
         
         //HPが0になったら敵自身を削除
-        if(HP <= 0) {
-            Destroy(this.gameObject);
-        }
+        if(HP <= 0) Destroy(this.gameObject);
     }
 
     IEnumerator FlushEnemy() {
