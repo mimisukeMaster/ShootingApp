@@ -7,9 +7,6 @@ using UnityEngine.SceneManagement;
 // ゲームの進行、スコア判定など総括的な処理を行うスクリプト
 public class GameManagerController : MonoBehaviour
 {
-    //スコア表示用テキスト
-    public TextMeshProUGUI ScoreUI;
-
     public Image HPGauge;
     public GameObject Enemy;
     public GameObject Boss;
