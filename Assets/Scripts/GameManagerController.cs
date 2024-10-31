@@ -91,7 +91,8 @@ public class GameManagerController : MonoBehaviour
 
         // ゲームBGMに変更する
         // audioSourceクラスのclip変数を変える
-        
+        audioSource.clip = GameBGM;
+        audioSource.Play();
     }
     public void ClearProcess() {
         foreach(GameObject obj in GameUIs) obj.SetActive(false);
@@ -99,7 +100,8 @@ public class GameManagerController : MonoBehaviour
 
         // BGMをクリア後のBGMに変更する処理
         // AudioSourceクラスのclipを変更する
-
+        audioSource.clip = ClearBGM;
+        audioSource.Play();
     }
 
     public void ReplayButtonDown() => Invoke(nameof(LoadScene), 0.5f);
