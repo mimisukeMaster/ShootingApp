@@ -64,23 +64,24 @@ public class PlayerController : MonoBehaviour
     // 衝突判定、当たったもののタグで判断する
     // 当たったものの情報がotherに代入されてこの関数が実行される
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Boss")) {
+        if (other.gameObject.CompareTag("Enemy") ||
+                other.gameObject.CompareTag("Boss") ||
+                    other.gameObject.CompareTag("BossBullet")) {
+
             // 自分のHPを減らす処理
             HP -= 5;
-            // UIを更新するためGameManagerController.csのDecreaseHP()関数を呼ぶ
+            // UIを更新
             GameManager.DecreaseHP(HP);
 
             // 点滅させる            
-            StartCoroutine(nameof(FlushPlay));
+            StartCoroutine(nameof(FlushPlayer));
 
             // HPが0なら削除
-            if(HP <= 0) {
-                GameManager.GameOver();
-            }
+            if(HP <= 0) GameManager.GameOver();
         }
     }
 
-    IEnumerator FlushPlay() {
+    IEnumerator FlushPlayer() {
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
         for (int i = 0; i < 5; i++){ 
             sprite.enabled = false;
