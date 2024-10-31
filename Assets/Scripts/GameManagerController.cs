@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,7 +41,7 @@ public class GameManagerController : MonoBehaviour
         for (int i = 0; i < enemyNum; i++)
         {
             // x軸方向はランダムな位置に、方向は6とびずつ生成していく
-            float randomX = UnityEngine.Random.Range(-2.5f, 1.5f);
+            float randomX = Random.Range(-2.5f, 1.5f);
             Instantiate(Enemy, new Vector2(randomX, 4 + 6 * i), Quaternion.Euler(0, 0, -90));
         }
 

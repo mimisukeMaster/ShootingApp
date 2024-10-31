@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Boss
   - GameUI
+  - BossBullet
   layers:
   - Default
   - TransparentFX

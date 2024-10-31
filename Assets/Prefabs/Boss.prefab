@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
+  Bullet: {fileID: 9020658393245725543, guid: e538588b0a7d5c447afc78fba126ec12, type: 3}
 --- !u!61 &5848802746356606880
 BoxCollider2D:
   m_ObjectHideFlags: 0
