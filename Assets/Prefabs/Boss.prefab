@@ -325,6 +325,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1611846370802576839, guid: 330468d4be7fc4e47b428b4cd5429226, type: 3}
+      propertyPath: m_MaskAlphaCutoff
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4509076041836474390, guid: 330468d4be7fc4e47b428b4cd5429226, type: 3}
       propertyPath: m_Name
       value: BossHPMask
