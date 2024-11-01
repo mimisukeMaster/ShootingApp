@@ -71,7 +71,7 @@ public class GameManagerController : MonoBehaviour
         Debug.Log(weight / maxBossHPGauge * 5);
         
         BossHPMask.position = new Vector3(
-         (weight - 1) / maxBossHPGauge * 3.9f - 3.9f, BossHPMask.position.y, 0);
+         (weight - 1) / maxBossHPGauge * 2.4f - 2.4f, BossHPMask.position.y, 0);
     }
 
     // 各効果音を鳴らす処理
