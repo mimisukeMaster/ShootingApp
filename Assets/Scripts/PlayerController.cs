@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // プレイヤーの行動の制御を行うスクリプト
@@ -106,7 +107,10 @@ public class PlayerController : MonoBehaviour
 
     // ここに弾丸発射ボタン押したときの処理を書く
     public void BulletButtonDown() {
-        
+        // Hierarchy上のBulletタグが付いたものを探して、指定個数より多ければreturn;
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+        if (bullets.Length > 5) return;
+
         // 弾丸を生成するには、Instantiate()関数を使う
         Vector3 pos = new Vector3(
             this.transform.position.x, this.transform.position.y + 2, this.transform.position.y
@@ -117,5 +121,8 @@ public class PlayerController : MonoBehaviour
     }
 
     // ここに初速与える処理
-    public void Started() => isStarted = true;
+    public void Started() {
+        isStarted = true;
+        myRigidbody.velocity = new Vector2(2, 0);
+    }
 }

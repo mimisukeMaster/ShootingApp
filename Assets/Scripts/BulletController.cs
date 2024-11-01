@@ -33,7 +33,7 @@ public class BulletController : MonoBehaviour
         durationTime = 3;
         nowTime = 0;
 
-        // 物理演算コンポーネントを取得
+        // 物理演算コンポーネントを取得(56行目のSpriteRendererは変数に入れずに使っている。変数に入れると処理が重くなる。入れなさすぎるとわかりにくい)
         myRigidbody = GetComponent<Rigidbody2D>();
 
         myRigidbody.velocity = new Vector2(0, 10);
@@ -53,23 +53,22 @@ public class BulletController : MonoBehaviour
     // 衝突判定、当たったもののタグで判断する
     // 当たったものの情報がotherに代入されてこの関数が実行される
     void OnTriggerEnter2D(Collider2D other) {
-        // if(other.gameObject.GetComponent<SpriteRenderer>().isVisible) {
-        if (other.gameObject.CompareTag("Enemy")) {
-            
-            // 当たった相手のEnemyController.csを取得して、関数を呼ぶ
-            other.GetComponent<EnemyController>().DecreaseHP();
-        }
-        if (other.gameObject.CompareTag("Boss")) {
-            
-            // 当たった相手のBossController.csを取得して、関数を呼ぶ
-            other.GetComponent<BossController>().DecreaseHP();
+        if(other.gameObject.GetComponent<SpriteRenderer>().isVisible) {
+            if (other.gameObject.CompareTag("Enemy")) {
 
+                // 当たった相手のEnemyController.csを取得して、関数を呼ぶ
+                other.GetComponent<EnemyController>().DecreaseHP();
+            }
+            if (other.gameObject.CompareTag("Boss")) {
+
+                // 当たった相手のBossController.csを取得して、関数を呼ぶ
+                other.GetComponent<BossController>().DecreaseHP();
+            }
+            if (other.gameObject.CompareTag("BossBullet")) {
+                Destroy(other.gameObject);
+            }
+            GameManager.AttackSEPlay();
         }
-        if (other.gameObject.CompareTag("BossBullet")) {
-            Destroy(other.gameObject);
-        }
-        GameManager.AttackSEPlay();
-        // }
 
         // 弾丸自身を削除
         Destroy(this.gameObject);

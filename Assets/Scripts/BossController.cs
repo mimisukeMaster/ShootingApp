@@ -58,7 +58,9 @@ public class BossController : MonoBehaviour
             GameObject spawnedBullet = Instantiate(Bullet, spawnPos, Quaternion.Euler(0f, 0f, -90f));
 
             spawnedBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -5);
+
             yield return new WaitForSeconds(2f);
+            Destroy(spawnedBullet);
         }
     }
 
