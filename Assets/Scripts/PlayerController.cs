@@ -116,5 +116,6 @@ public class PlayerController : MonoBehaviour
         GameManager.LaunchSEPlay();
     }
 
+    // ここに初速与える処理
     public void Started() => isStarted = true;
 }
